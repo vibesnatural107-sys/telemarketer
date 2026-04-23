@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeleMarketerPro Bot</title>
+    <script>
+      // Global shim for libraries that expect 'global'
+      window.global = window;
+      window.process = { env: { NODE_ENV: 'development' } };
+
+      // Fix for "Cannot set property fetch of #<Window> which has only a getter"
+      // This interceptor prevents external libraries from trying to overwrite the read-only window.fetch property
+      (function() {
+        const originalFetch = window.fetch;
+        if (originalFetch) {
+          try {
+            Object.defineProperty(window, 'fetch', {
+              get() { return originalFetch; },
+              set() { console.warn('Blocked attempt to overwrite window.fetch'); },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e) {
+            // If we can't redefine it, the error might still occur if a library tries to.
+            // But usually this definition happens before libraries load.
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

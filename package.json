@@ -1,0 +1,41 @@
+{
+  "name": "telemarketerpro-bot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build:server": "esbuild src/server.ts --bundle --platform=node --target=node18 --outfile=dist/server.js --format=esm --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\"",
+    "build": "vite build && npm run build:server",
+    "start": "node dist/server.js",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@firebase/eslint-plugin-security-rules": "^0.0.1",
+    "@google/genai": "latest",
+    "@supabase/supabase-js": "^2.104.0",
+    "@tailwindcss/vite": "latest",
+    "@vitejs/plugin-react": "latest",
+    "dotenv": "latest",
+    "esbuild": "^0.28.0",
+    "express": "latest",
+    "input": "latest",
+    "lucide-react": "latest",
+    "motion": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "telegraf": "latest",
+    "telegram": "latest",
+    "tsx": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}
